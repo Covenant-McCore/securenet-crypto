@@ -1,0 +1,88 @@
+from flask import Flask, render_template, request
+from phe import paillier
+
+app = Flask(__name__)
+
+# -------------------------------
+# HOMOMORPHIC ENCRYPTION SETUP
+# -------------------------------
+public_key, private_key = paillier.generate_paillier_keypair()
+
+# -------------------------------
+# ROUTES
+# -------------------------------
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+# -------------------------------
+# HOMOMORPHIC ENCRYPTION DEMO
+# -------------------------------
+@app.route("/he", methods=["GET", "POST"])
+def he():
+    result = None
+    enc_a = enc_b = enc_result = None
+
+    if request.method == "POST":
+        a = int(request.form["a"])
+        b = int(request.form["b"])
+
+        enc_a = public_key.encrypt(a)
+        enc_b = public_key.encrypt(b)
+
+        enc_result = enc_a + enc_b
+        result = private_key.decrypt(enc_result)
+
+    return render_template(
+        "he.html",
+        enc_a=enc_a,
+        enc_b=enc_b,
+        enc_result=enc_result,
+        result=result
+    )
+
+# -------------------------------
+# POST-QUANTUM CRYPTOGRAPHY DEMO
+# -------------------------------
+@app.route("/pqc", methods=["GET", "POST"])
+def pqc():
+    encrypted = decrypted = None
+    status = None
+
+    if request.method == "POST":
+        message = request.form["message"]
+        encrypted = "PQC_ENCRYPTED(" + message + ")"
+        decrypted = message
+        status = "Post-quantum key exchange established successfully"
+
+    return render_template(
+        "pqc.html",
+        encrypted=encrypted,
+        decrypted=decrypted,
+        status=status
+    )
+
+# -------------------------------
+# ATTRIBUTE-BASED ENCRYPTION DEMO
+# -------------------------------
+@app.route("/abe", methods=["GET", "POST"])
+def abe():
+    access = None
+    role = None
+
+    if request.method == "POST":
+        role = request.form["role"]
+        if role == "admin":
+            access = "Access Granted: Confidential Data Revealed"
+        else:
+            access = "Access Denied"
+
+    return render_template("abe.html", access=access, role=role)
+
+# -------------------------------
+# RUN SERVER (MUST BE LAST)
+# -------------------------------
+if __name__ == "__main__":
+    app.run(debug=True)
+

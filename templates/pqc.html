@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post-Quantum Cryptography Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="demo-box">
+    <h2>Post-Quantum Cryptography Demo</h2>
+
+    <form method="POST">
+        <label>Enter Message:</label><br>
+        <input type="text" name="message" required style="width:80%; padding:8px;">
+        <br><br>
+        <button type="submit">Encrypt</button>
+    </form>
+
+    {% if encrypted %}
+    <div class="result">
+        <p><strong>Encrypted Message:</strong><br>
+           {{ encrypted }}
+        </p>
+
+        <p><strong>Decrypted Message:</strong><br>
+           {{ decrypted }}
+        </p>
+
+        <p><strong>Status:</strong><br>
+           {{ status }} ✅
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

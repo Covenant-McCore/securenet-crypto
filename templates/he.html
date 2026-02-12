@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homomorphic Encryption Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="demo-box">
+    <h2>Homomorphic Encryption Demo</h2>
+
+    <form method="POST">
+        Number A:
+        <input type="number" name="a" required>
+
+        Number B:
+        <input type="number" name="b" required>
+
+        <button type="submit">Compute</button>
+    </form>
+
+    {% if result is not none %}
+    <div class="result">
+        <p><strong>Encrypted A:</strong> ENC({{ enc_a.ciphertext() }})</p>
+        <p><strong>Encrypted B:</strong> ENC({{ enc_b.ciphertext() }})</p>
+
+        <p><strong>Server Computation:</strong><br>
+           ENC({{ enc_result.ciphertext() }}) (Computed without decryption)
+        </p>
+
+        <p><strong>Decrypted Result (Client):</strong> {{ result }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

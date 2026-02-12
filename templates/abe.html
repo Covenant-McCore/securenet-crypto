@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attribute-Based Encryption Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="demo-box">
+    <h2>Attribute-Based Encryption Demo</h2>
+
+    <form method="POST">
+        <label>Select Role:</label><br><br>
+
+        <select name="role" required style="padding:8px; width:200px;">
+            <option value="">-- Choose Role --</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+
+        <br><br>
+        <button type="submit">Check Access</button>
+    </form>
+
+    {% if access %}
+    <div class="result">
+        <p><strong>Role Selected:</strong> {{ role }}</p>
+        <p><strong>Result:</strong> {{ access }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

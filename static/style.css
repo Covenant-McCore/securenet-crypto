@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
+h1 {
+    color: #1a237e;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 220px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: #333;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background-color: #1a237e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.card a:hover {
+    background-color: #3949ab;
+}
+
+.demo-box {
+    background-color: white;
+    width: 60%;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+input, select, button {
+    padding: 6px;
+    margin: 5px;
+}
+
+button {
+    background-color: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3949ab;
+}
+
+.result {
+    margin-top: 15px;
+    background-color: #eef2ff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
